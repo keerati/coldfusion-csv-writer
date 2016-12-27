@@ -1,6 +1,5 @@
 component accessors = true {
   property name = 'query' getter = true setter = true;
-  property name = 'writer' getter = true setter = true;
   property name = 'headers' getter = true setter = true;
   property name = 'withHeaders' getter = true setter = true default = true;
   property name = 'delimiterChar' getter = true setter = true default = ',';
