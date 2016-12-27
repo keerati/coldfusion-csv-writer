@@ -1,5 +1,6 @@
 component accessors = true {
   property name = 'query' getter = true setter = true;
+  property name = 'writer' getter = true setter = true;
   property name = 'headers' getter = true setter = true;
   property name = 'withHeaders' getter = true setter = true default = true;
   property name = 'delimiterChar' getter = true setter = true default = ',';
@@ -11,11 +12,11 @@ component accessors = true {
   public any function init(
     required any outputQuery,
     required any outputPath,
+    array outputHeaders,
+    boolean withHeaders,
     string delimiter,
     string quote,
-    string newLine,
-    array outputHeaders,
-    boolean withHeaders
+    string newLine
   ) {
     setPath(outputPath);
 
@@ -25,6 +26,9 @@ component accessors = true {
       setWithHeaders(withHeaders);
     }
     if (!IsDefined('outputHeaders')) {
+      if (!IsQuery(outputQuery)) {
+        throw(type = "Object", message = "If the outputQuery is not a Query, outputHeader is required.")
+      }
       var queryMetaData = GetMetaData(outputQuery);
       outputHeaders = getHeadersFromMetaData(queryMetaData);
     }
@@ -69,7 +73,7 @@ component accessors = true {
   /* End inject functions */
 
   public boolean function write() {
-    var writer = CreateObject("java", "java.io.FileWriter").init(getPath()); 
+    var writer = CreateObject("java", "java.io.FileWriter").init(getPath());
     var successful = true;
     var newLine = getNewLineChar();
     try {
