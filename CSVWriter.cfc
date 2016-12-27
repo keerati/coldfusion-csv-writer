@@ -72,7 +72,8 @@ component accessors = true {
   /* End inject functions */
 
   public boolean function write() {
-    var writer = CreateObject("java", "java.io.FileWriter").init(getPath());
+    var fileWriter = CreateObject("java", "java.io.FileWriter").init(getPath());
+    var writer = CreateObject("java", "java.io.BufferedWriter").init(fileWriter);
     var successful = true;
     var newLine = getNewLineChar();
     try {
