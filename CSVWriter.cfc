@@ -10,7 +10,7 @@ component accessors = true {
 
   public any function init(
     required any outputQuery,
-    required string outputPath,
+    required any outputPath,
     string delimiter,
     string quote,
     string newLine,
@@ -131,19 +131,13 @@ component accessors = true {
   }
 
   private string function makeLine(struct record, any getValueFunc) {
-    var lineBuffer = CreateObject("java", "java.lang.StringBuffer");
-    var delimiter = getDelimiterChar();
+    var lineBuffer = [];
     var headers = getHeaders();
-    var headersCount = ArrayLen(headers);
-    for (var i = 1; i <= headersCount; i++) {
-      var header = headers[i];
-      var line = cleanValue(getValueFunc(header, record));
-      lineBuffer.append(line);
-      if (i != headersCount) {
-        lineBuffer.append(delimiter);
-      }
+    for (var header in headers) {
+      var value = cleanValue(getValueFunc(header, record));
+      ArrayAppend(lineBuffer, value);
     }
-    return lineBuffer.toString();
+    return ArrayToList(lineBuffer, getDelimiterChar());
   }
 
   private string function cleanValue(string value) {
