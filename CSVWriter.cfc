@@ -27,7 +27,7 @@ component accessors = true {
     }
     if (!IsDefined('outputHeaders')) {
       if (!IsQuery(outputQuery)) {
-        throw(type = "Object", message = "If the outputQuery is not a Query, outputHeader is required.")
+        throw(type = "InputValidation", message = "If the outputQuery is not a Query, outputHeader is required.");
       }
       var queryMetaData = GetMetaData(outputQuery);
       outputHeaders = getHeadersFromMetaData(queryMetaData);
