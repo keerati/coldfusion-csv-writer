@@ -78,7 +78,7 @@ case $1 in
 				mv mxunit* "$WEBROOT/$TESTFRAMEWORK"
 				;;
 			testbox)
-				mv testbox "$WEBROOT/$TESTFRAMEWORK"
+				mv TestBox-master "$WEBROOT/$TESTFRAMEWORK"
 				;;
 		esac
 		ln -s $BUILD_DIR $WEBROOT/$2
