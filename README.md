@@ -1,4 +1,4 @@
-# Coldfusion CSV Writer module
+# Coldfusion CSV Writer module ![](https://circleci.com/gh/keerati/coldfusion-csv-writer.png?circle-token=f64759dfa35cbda7da54544ac668c6ce82820e61)
 
 Write a Query object or Array of Struct to specific path using java.io.FileWriter.
 
