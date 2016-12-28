@@ -74,7 +74,6 @@ case $1 in
         download_and_extract $TESTFRAMEWORK_URL
         mv TestBox-master "$WEBROOT/testbox"
 
-        esac
         ln -s $BUILD_DIR $WEBROOT/$2
         ;;
     start)
